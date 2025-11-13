@@ -9,7 +9,7 @@ def instantiate_graph(filename):
         while line:
             line = line.strip()
             vert, a_list = line.split(':')
-            pairs = [p.strip() for p in a_list.split(',')]
+            pairs = [p.strip() for p in a_list.split(',') if p.strip()]
             edges = []
             for p in pairs:
                 weight, dst = map(int, p.split())
@@ -70,7 +70,7 @@ def dijkstra(graph, u):
 
         v_heap = [vert]
 
-        for k in graph.keys():
+        for k in graph:
             if k != vert:
                 v_dict[k] = {
                     'd': float('inf'),
@@ -82,7 +82,7 @@ def dijkstra(graph, u):
         return v_dict, v_heap
 
     def drop_h_idx(v_dict):
-        for k in v_dict.keys():
+        for k in v_dict:
             v_dict[k].pop('h_idx')
 
     vertices, h = init_single_source(u)
