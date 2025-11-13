@@ -9,12 +9,11 @@ def instantiate_graph(filename):
         while line:
             line = line.strip()
             vert, a_list = line.split(':')
-            pairs = [p.strip() for p in a_list.split(',') if p.strip()]
+            pairs = [p.strip() for p in a_list.split(',')]
             edges = []
-            if pairs:
-                for p in pairs:
-                    weight, dst = map(int, p.split())
-                    edges.append(edge(weight, dst))
+            for p in pairs:
+                weight, dst = map(int, p.split())
+                edges.append(edge(weight, dst))
 
             graph[int(vert)] = edges
             line = f.readline()
